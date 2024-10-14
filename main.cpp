@@ -68,12 +68,6 @@ void UpdateCamera()
 
 bool IsCollision(double x, double y, int width, int height)
 {
-    // デバッグ用ログファイル
-    FILE* fp;
-    fopen_s(&fp, "collision_debug.txt", "a");
-    if (fp) {
-        fprintf(fp, "IsCollision called with x=%.2f, y=%.2f, width=%d, height=%d\n", x, y, width, height);
-    }
 
     int left = static_cast<int>(std::floor(x));
     int right = static_cast<int>(std::ceil(x + width));
@@ -85,27 +79,15 @@ bool IsCollision(double x, double y, int width, int height)
             int gridX = checkX / BLOCK_SIZE;
             int gridY = checkY / BLOCK_SIZE;
 
-            if (fp) {
-                fprintf(fp, "Checking gridX=%d, gridY=%d\n", gridX, gridY);
-            }
-
             if (gridY >= 0 && gridY < static_cast<int>(gameMap.size()) &&
                 gridX >= 0 && gridX < static_cast<int>(gameMap[0].size())) {
                 if (gameMap[gridY][gridX] == '1' || gameMap[gridY][gridX] == '4') {
-                    if (fp) {
-                        fprintf(fp, "Collision detected at gridX=%d, gridY=%d\n", gridX, gridY);
-                        fclose(fp);
-                    }
                     return true;
                 }
             }
         }
     }
 
-    if (fp) {
-        fprintf(fp, "No collision detected\n");
-        fclose(fp);
-    }
     return false;
 }
 bool IsOnGround(const Player& p)
@@ -211,7 +193,7 @@ void DrawMap()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    SetOutApplicationLogValidFlag(TRUE);  // ログ出力を有効化
+    SetOutApplicationLogValidFlag(FALSE);  // ログ出力を有効化
 
     // ウィンドウモードで起動
     if (ChangeWindowMode(TRUE) == -1) {
