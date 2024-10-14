@@ -1,6 +1,7 @@
 ﻿  main.cpp
+D:\cppprojects\TestGame\main.cpp(117,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 1 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 130 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Game.vcxproj -> D:\cppprojects\TestGame\x64\Release\Game.exe
